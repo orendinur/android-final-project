@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".MainPage">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:fontFamily="@font/font7"
+        android:text="Want to make a cocktail?\nHere you can find a variety of highly recommended cocktail receipes!\nenjoy!"
+        android:textAlignment="center"
+        android:textColor="#939393"
+        android:textSize="26dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.283" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font7"
+        android:text="Welcome"
+        android:textColor="@color/white"
+        android:textSize="38dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.542" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="107dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="73dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="113dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="105dp"
+        android:layout_height="102dp"
+        android:layout_marginTop="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font3"
+        android:text="“You can’t buy happiness, but you can prepare a cocktail. And that’s kind of the same thing.”"
+        android:textAlignment="center"
+        android:textColor="#ff748c"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="67dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="7dp"
+        android:src="@drawable/cocktail2"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.433" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="74dp"
+        android:layout_height="111dp"
+        android:layout_marginEnd="1dp"
+        android:src="@drawable/cocktail10"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.347" />
+</androidx.constraintlayout.widget.ConstraintLayout>

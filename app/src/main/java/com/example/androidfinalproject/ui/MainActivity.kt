@@ -1,15 +1,22 @@
-package com.example.androidfinalproject
+package com.example.androidfinalproject.ui
+
+import com.example.androidfinalproject.R
+import kotlin.text.Typography.dagger
+
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import dagger.hilt.android.AndroidEntryPoint
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.text.Html
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,4 +40,5 @@ class MainActivity : AppCompatActivity() {
        }
         return super.onOptionsItemSelected(item)
     }
+
 }

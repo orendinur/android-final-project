@@ -7,48 +7,67 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.example.androidfinalproject.R
 import com.example.androidfinalproject.data.models.Cocktail
 import com.example.androidfinalproject.databinding.FragmentCocktailDescriptionBinding
-import com.example.androidfinalproject.databinding.FragmentCocktailsSearchBinding
 import com.example.androidfinalproject.ui.cocktails_search.CocktailsSearchViewModel
-import dagger.hilt.android.AndroidEntryPoint
-
-@AndroidEntryPoint
 
 class DescriptionFragment : Fragment() {
-
-//  TODO: Create a viewModel
-//   private val viewModel : CocktailsSearchViewModel by viewModels()
 
     private var _binding: FragmentCocktailDescriptionBinding? = null
 
     private val binding get() = _binding!!
 
-    var strDrink = "Mojito"
-    var alcoholic = "Alcoholic"
-    var glass = "Glass"
-    var instructions ="Take this shitty drink and shav it up in your fucking ass" +
-            "Take this shitty drink and shav it up in your fucking ass" +
-            "Take this shitty drink and shav it up in your fucking ass"
-    var thumb ="https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg"
-
-
-
     private val viewModel: CocktailsSearchViewModel by activityViewModels()
 
-    private var cocktailDescriptionInfo: Cocktail? = null
+    private var cocktailDescription: Cocktail? = null
+    set(value) {
+        binding.cokctailName.text = value?.strDrink
+        binding.isAlcoholic.text = value?.strAlcoholic
+        Glide.with(this).load(value?.strDrinkThumb).into(binding.coktailImage)
+        if(value?.strInstructions != null) binding.instructions.text = value?.strInstructions else binding.bottomInstructionsLayout.visibility = View.INVISIBLE
+
+
+    var ingridientsStr = value?.strIngredient1 + "\n" +
+            value?.strIngredient2 + "\n" +
+            value?.strIngredient3 + "\n" +
+     value?.strIngredient4 + "\n"+
+     value?.strIngredient5 + "\n"+
+     value?.strIngredient6 + "\n"+
+     value?.strIngredient7 + "\n"+
+     value?.strIngredient8 + "\n"+
+     value?.strIngredient9 + "\n"+
+     value?.strIngredient10 + "\n"+
+     value?.strIngredient11 + "\n"+
+     value?.strIngredient12 + "\n"+
+     value?.strIngredient13 + "\n"+
+     value?.strIngredient14 + "\n"+
+     value?.strIngredient15 + "\n"
+
+   var drinkMeasureStr = viewModel.selectedCocktail.value?.strMeasure1 + "\n" +
+     value?.strMeasure2 + "\n"+
+     value?.strMeasure3 + "\n"+
+     value?.strMeasure4 + "\n"+
+     value?.strMeasure5 + "\n"+
+     value?.strMeasure6 + "\n"+
+     value?.strMeasure7 + "\n"+
+     value?.strMeasure8 + "\n"+
+     value?.strMeasure9 + "\n"+
+     value?.strMeasure10 + "\n"+
+     value?.strMeasure11 + "\n"+
+     value?.strMeasure12 + "\n"+
+     value?.strMeasure13 + "\n"+
+     value?.strMeasure14 + "\n"+
+     value?.strMeasure15 + "\n"
+
+    binding.ingridients.text = ingridientsStr.replace("null", "")
+    binding.measures.text = drinkMeasureStr.replace("null", "")
+        field = value
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.selectedCocktail.observe(this) {
-            //TODO: Add the binding here
-
-            cocktailDescriptionInfo = it
-        }
     }
 
     override fun onCreateView(
@@ -64,15 +83,11 @@ class DescriptionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.cokctailName.text = strDrink
-        binding.isAlcoholic.text = alcoholic
-        binding.glass.text = glass
-        Glide.with(this).load(thumb).into(binding.coktailImage)
-
-        binding.instructions.text = instructions
-
-
-        Toast.makeText(requireContext(), "${cocktailDescriptionInfo?.strDrink}", Toast.LENGTH_LONG).show()
+        viewModel.selectedCocktail.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), "observer triggered ${viewModel.selectedCocktail.value?.strDrink}", Toast.LENGTH_LONG).show()
+            cocktailDescription = it
+        }
+        Toast.makeText(requireContext(), "${cocktailDescription?.strDrink}", Toast.LENGTH_LONG).show()
 
     }
 
@@ -81,8 +96,3 @@ class DescriptionFragment : Fragment() {
         _binding = null
     }
 }
-
-//TODO:
-// create a viewModel
-// add fragment to navigation
-// fill fragment with viewModel

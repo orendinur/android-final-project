@@ -13,8 +13,6 @@ class CocktailsAdapter(private val listener: CocktailItemListener) :
 
     private val cocktails = ArrayList<Cocktail>()
 
-
-
     class CocktailViewHolder(private val itemBinding: ItemCocktailBinding,
                               private val listener: CocktailItemListener)
         : RecyclerView.ViewHolder(itemBinding.root),
@@ -36,7 +34,6 @@ class CocktailsAdapter(private val listener: CocktailItemListener) :
 
         override fun onClick(v: View?) {
             listener.onCocktailClick(this.cocktail)
-
         }
     }
 

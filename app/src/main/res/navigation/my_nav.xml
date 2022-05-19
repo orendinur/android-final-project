@@ -21,5 +21,12 @@
         <action
             android:id="@+id/action_cocktailsSearch_to_mainPage"
             app:destination="@id/mainPage" />
+        <action
+            android:id="@+id/action_cocktailsSearch_to_descriptionFragment2"
+            app:destination="@id/descriptionFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/descriptionFragment"
+        android:name="com.example.androidfinalproject.ui.DescriptionFragment"
+        android:label="DescriptionFragment" />
 </navigation>

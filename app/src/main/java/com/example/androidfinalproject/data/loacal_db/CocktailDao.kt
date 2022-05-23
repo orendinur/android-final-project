@@ -16,10 +16,14 @@ interface CocktailDao {
     @Query("SELECT * FROM cocktails WHERE idDrink = :id")
     fun getCocktail(id : Int) : LiveData<Cocktail>
 
+    @Query("SELECT * FROM cocktails WHERE strDrink LIKE :name")
+    fun getCocktailsByName(name : String) : LiveData<List<Cocktail>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCocktail(cocktail: Cocktail)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCocktails(cocktails : List<Cocktail>)
+
     
 }

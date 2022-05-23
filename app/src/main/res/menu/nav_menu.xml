@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/nav_home"
+        android:icon="@drawable/homepage"
+        android:title="Home"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/nav_search"
+        android:icon="@drawable/searchcocktail"
+        android:title="Search cocktails"
+        app:showAsAction="collapseActionView|ifRoom" />
+
+    <item android:id="@+id/nav_fav"
+        android:icon="@drawable/favorite_cocktail_card"
+        android:title="Favorites"
+        app:showAsAction="ifRoom"/>
+
+</menu>

@@ -3,10 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/drawable/favorite.xml" value="0.1195" />
+        <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/drawable/favorite_search_icon.xml" value="0.1195" />
+        <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/drawable/favorites.xml" value="0.1195" />
+        <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/drawable/homepage.xml" value="0.1195" />
+        <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/drawable/search_box_design.xml" value="0.1195" />
+        <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/drawable/search_card_text_design.xml" value="0.1195" />
+        <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/drawable/searchcocktail.xml" value="0.1195" />
         <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/layout/activity_main.xml" value="0.13858695652173914" />
-        <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/layout/fragment_cocktails_search.xml" value="0.12" />
+        <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/layout/fragment_cocktails_search.xml" value="0.1" />
         <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/layout/fragment_main_page.xml" value="0.1" />
-        <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/layout/item_cocktail.xml" value="0.25" />
+        <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/layout/item_cocktail.xml" value="0.5" />
+        <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/layout/text_box_design.xml" value="0.13858695652173914" />
+        <entry key="..\:/Users/tomer/AndroidStudioProjects/android-final-project/app/src/main/res/menu/nav_menu.xml" value="0.1796875" />
       </map>
     </option>
   </component>

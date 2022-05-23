@@ -55,5 +55,4 @@ data class Cocktail(
     val strImageAttribution	: String?,
     val strCreativeCommonsConfirmed	: String?,
     val dateModified	:	String?
-
 )

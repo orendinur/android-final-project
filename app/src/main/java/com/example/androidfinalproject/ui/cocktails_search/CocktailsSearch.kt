@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidfinalproject.R
+import com.example.androidfinalproject.data.models.Cocktail
 import com.example.androidfinalproject.databinding.FragmentCocktailsSearchBinding
 import com.example.androidfinalproject.utils.Loading
 import com.example.androidfinalproject.utils.Success
@@ -19,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CocktailsSearch : Fragment(), CocktailsAdapter.CocktailItemListener {
 
-    private val viewModel : CocktailsSearchViewModel by viewModels()
+    private val viewModel : CocktailsSearchViewModel by activityViewModels()
 
     private var _binding: FragmentCocktailsSearchBinding? = null
 
@@ -59,8 +60,11 @@ class CocktailsSearch : Fragment(), CocktailsAdapter.CocktailItemListener {
         }
     }
 
-    override fun onCocktailClick(cocktailId: Int) {
-        findNavController().navigate(R.id.action_cocktailsSearch_to_mainPage)
+    override fun onCocktailClick(cocktail: Cocktail) {
+//        findNavController().navigate(R.id.action_cocktailsSearch_to_mainPage)
+        findNavController().navigate(R.id.action_cocktailsSearch_to_descriptionFragment2)
+        viewModel.selectCocktail(cocktail)
+
     }
 
 

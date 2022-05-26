@@ -1,7 +1,6 @@
 package com.example.androidfinalproject.ui.cocktails_search
 
 import android.view.LayoutInflater
-import android.view.OnReceiveContentListener
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -34,7 +33,7 @@ class CocktailsAdapter(private val listener: CocktailItemListener) :
         }
 
         override fun onClick(v: View?) {
-            listener.onCocktailClick(cocktail.idDrink)
+            listener.onCocktailClick(this.cocktail)
         }
     }
 
@@ -56,6 +55,6 @@ class CocktailsAdapter(private val listener: CocktailItemListener) :
     override fun getItemCount() = cocktails.size
 
     interface CocktailItemListener {
-        fun onCocktailClick(cocktailId : Int)
+        fun onCocktailClick(cocktailId: Cocktail)
     }
 }

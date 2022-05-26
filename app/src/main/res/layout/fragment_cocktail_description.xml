@@ -27,14 +27,15 @@
             app:layout_constraintBottom_toTopOf="@id/coktailImage"/>
 
 
+
         <ImageView
             android:id="@+id/coktailImage"
             android:layout_width="189dp"
-            android:layout_height="365dp"
-            android:scaleType="center"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
 
             android:adjustViewBounds="true"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +46,7 @@
 
         <TextView
             android:id="@+id/isAlcoholic"
+            android:textStyle="italic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"

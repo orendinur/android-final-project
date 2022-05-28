@@ -1,7 +1,6 @@
 package com.example.androidfinalproject.ui.cocktails_search
 
 import android.view.LayoutInflater
-import android.view.OnReceiveContentListener
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +14,8 @@ class CocktailsAdapter(private val listener: CocktailItemListener) :
     private val cocktails = ArrayList<Cocktail>()
 
     class CocktailViewHolder(private val itemBinding: ItemCocktailBinding,
-                              private val listener: CocktailItemListener)
+                             private val listener: CocktailItemListener
+    )
         : RecyclerView.ViewHolder(itemBinding.root),
         View.OnClickListener {
 

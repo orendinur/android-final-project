@@ -15,4 +15,8 @@ interface CocktailService {
     @GET("json/v1/1/lookup.php?")
     suspend fun getCocktail(@Query("iid") id : Int) : Response<Cocktail>
 
+    @GET("json/v1/1/random.php")
+    suspend fun getRandomCocktail() : Response<Cocktail>
+
+
 }

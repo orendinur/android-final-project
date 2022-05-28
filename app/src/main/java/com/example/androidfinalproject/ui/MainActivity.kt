@@ -28,8 +28,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         setContentView(R.layout.activity_main)
         supportActionBar?.title = ""
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#000000")))

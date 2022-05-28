@@ -3,13 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/danit/android-final-project/app/src/main/res/drawable/cocktail_image_mainpage.xml" value="0.1" />
         <entry key="..\:/Users/danit/android-final-project/app/src/main/res/drawable/favorites.xml" value="0.1" />
         <entry key="..\:/Users/danit/android-final-project/app/src/main/res/drawable/homepage.xml" value="0.1" />
+        <entry key="..\:/Users/danit/android-final-project/app/src/main/res/drawable/image_mainpage.xml" value="0.1" />
         <entry key="..\:/Users/danit/android-final-project/app/src/main/res/drawable/searchcocktail.xml" value="0.1" />
         <entry key="..\:/Users/danit/android-final-project/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/Users/danit/android-final-project/app/src/main/res/layout/fragment_cocktails_search.xml" value="0.1" />
-        <entry key="..\:/Users/danit/android-final-project/app/src/main/res/layout/fragment_main_page.xml" value="0.22" />
+        <entry key="..\:/Users/danit/android-final-project/app/src/main/res/layout/fragment_main_page.xml" value="0.1282051282051282" />
         <entry key="..\:/Users/danit/android-final-project/app/src/main/res/layout/fragment_main_page_adapter.xml" value="0.1796875" />
+        <entry key="..\:/Users/danit/android-final-project/app/src/main/res/layout/item_cocktail.xml" value="0.125" />
+        <entry key="..\:/Users/danit/android-final-project/app/src/main/res/layout/item_cocktail_mainpage.xml" value="0.22" />
         <entry key="..\:/Users/danit/android-final-project/app/src/main/res/menu/nav_menu.xml" value="0.3333333333333333" />
       </map>
     </option>

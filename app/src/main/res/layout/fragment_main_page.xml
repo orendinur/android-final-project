@@ -26,8 +26,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="264dp"
-        android:layout_height="127dp"
+        android:layout_width="257dp"
+        android:layout_height="117dp"
         android:fontFamily="@font/font3"
         android:text="Cocktail Bar"
         android:textColor="@color/golden_yellow"
@@ -35,22 +35,27 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.361"
+        app:layout_constraintHorizontal_bias="0.299"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.551" />
+        app:layout_constraintVertical_bias="0.533" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="368dp"
+        android:layout_height="102dp"
+
         android:fontFamily="@font/font3"
         android:text="“You can’t buy happiness, but you can prepare a cocktail. And that’s kind of the same thing.”"
         android:textAlignment="center"
         android:textColor="@color/golden_yellow"
-        android:textSize="22dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cocktailsRv"
+        app:layout_constraintVertical_bias="0.666" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -63,18 +68,19 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.603" />
+        app:layout_constraintVertical_bias="0.641" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cocktailsRv"
         android:layout_width="372dp"
         android:layout_height="207dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.567"
+        app:layout_constraintVertical_bias="0.214"
         tools:ignore="MissingConstraints" />
 
 

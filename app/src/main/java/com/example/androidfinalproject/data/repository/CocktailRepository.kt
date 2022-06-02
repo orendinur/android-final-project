@@ -1,6 +1,10 @@
 package com.example.androidfinalproject.data.repository
 
+import androidx.lifecycle.LiveData
 import com.example.androidfinalproject.data.loacal_db.CocktailDao
+import com.example.androidfinalproject.data.loacal_db.FavoriteCocktailDao
+import com.example.androidfinalproject.data.models.Cocktail
+import com.example.androidfinalproject.data.models.FavoriteCocktail
 import com.example.androidfinalproject.data.remote_db.CocktailRemoteDataSource
 import com.example.androidfinalproject.utils.performFetching
 import com.example.androidfinalproject.utils.performFetchingAndSaving
@@ -31,8 +35,15 @@ class CocktailRepository @Inject constructor (
                 { localDataSource.insertCocktails(it.drinks) }
             )
 
-    fun getCocktailsByName(name: String, flag: Boolean) = performFetching(
-                { localDataSource.getCocktailsByName(name) },
-                { remoteDataSource.getCocktailsByName(name) }
-            )
+    suspend fun updateCocktail(cocktail: Cocktail) {
+        localDataSource.updateCocktail(cocktail)
     }
+
+    fun getCocktailsByName(name: String, flag: Boolean) = performFetching {
+        localDataSource.getCocktailsByName(name)
+    }
+
+    fun getFavoriteCocktails() = performFetching {
+        localDataSource.getFavoritesCocktails()
+    }
+}

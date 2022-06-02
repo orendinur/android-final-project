@@ -1,24 +1,24 @@
 package com.example.androidfinalproject.ui.cocktails_search
 
 import android.os.Bundle
-import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.SearchView
 import android.widget.Toast
-import androidx.core.os.bundleOf
-import androidx.core.widget.doAfterTextChanged
+import androidx.core.view.MenuItemCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidfinalproject.R
+import com.example.androidfinalproject.data.loacal_db.CocktailDao
+import com.example.androidfinalproject.data.models.Cocktail
 import com.example.androidfinalproject.data.repository.CocktailRepository
 import com.example.androidfinalproject.databinding.FragmentCocktailsSearchBinding
 import com.example.androidfinalproject.utils.Loading
 import com.example.androidfinalproject.utils.Success
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class CocktailsSearch : Fragment(), CocktailsAdapter.CocktailItemListener {
@@ -31,7 +31,12 @@ class CocktailsSearch : Fragment(), CocktailsAdapter.CocktailItemListener {
 
     private  lateinit var  adapter: CocktailsAdapter
 
-    private lateinit var cocktailRepository: CocktailRepository
+    private lateinit var searchView : SearchView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,17 +53,20 @@ class CocktailsSearch : Fragment(), CocktailsAdapter.CocktailItemListener {
         binding.cocktailsRv.adapter = adapter
 
         viewModel.cocktails.observe(viewLifecycleOwner) {
-            Log.i("fff","fffffffffff")
+            Log.i("cocktails changed","start")
             when (it.status) {
-                is Loading -> binding.progressBar.visibility = View.VISIBLE
-
+                is Loading -> {
+                    Log.i("cocktails changed","Loading")
+                    binding.progressBar.visibility = View.VISIBLE
+                }
                 is Success -> {
+                    Log.i("cocktails changed","Success")
                     binding.progressBar.visibility = View.GONE
                     adapter.setCocktails(it.status.data!!)
                 }
 
                 is Error -> {
-                    Log.i("e","booommmm")
+                    Log.i("cocktails changed","Error")
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), it.status.message, Toast.LENGTH_LONG).show()
                 }
@@ -67,16 +75,58 @@ class CocktailsSearch : Fragment(), CocktailsAdapter.CocktailItemListener {
                 Toast.makeText(requireContext(), "No results", Toast.LENGTH_SHORT).show()
             }
         }
-        binding.search.doAfterTextChanged {
-      //      viewModel.cocktails = cocktailRepository.getCocktailsByName("%" + binding.search.text.toString() + "%")
-            viewModel.setName(binding.search.text.toString())
-            Log.i("YYYYYYYYYYYYY", binding.search.text.toString())
+    }
 
+    override fun onFavoriteClick(cocktail: Cocktail) {
+        if (cocktail.isFavoriteCocktail == 0) {
+            cocktail.isFavoriteCocktail = 1
+            Toast.makeText(requireContext(), "changed to ${cocktail.isFavoriteCocktail}", Toast.LENGTH_SHORT).show()
         }
+        else {
+            cocktail.isFavoriteCocktail = 0
+            Toast.makeText(requireContext(), "changed to ${cocktail.isFavoriteCocktail}", Toast.LENGTH_SHORT).show()
+        }
+        viewModel.updateCocktail(cocktail)
     }
 
     override fun onCocktailClick(cocktailId: Int) {
-        findNavController().navigate(R.id.action_cocktailsSearch_to_mainPage)
+        //findNavController().navigate(R.id.action_cocktailsSearch_to_mainPage)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater?.let { super.onCreateOptionsMenu(menu, it) }
+        menu.clear()
+        inflater?.inflate(R.menu.nav_menu, menu)
+        val menuItem = menu.findItem(R.id.cocktailsSearch)
+        searchView = menuItem.actionView as SearchView
+        searchView.queryHint = "Search for a cocktail"
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                viewModel.setName(query)
+                return false
+            }
+            override fun onQueryTextChange(newText: String): Boolean {
+                viewModel.setName(newText)
+                return false
+            }
+        })
+
+        menuItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                // TODO: do something...
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                findNavController().navigate(R.id.action_cocktailsSearch_to_mainPage)
+                return true
+            }
+        })
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

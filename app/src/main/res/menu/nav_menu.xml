@@ -2,19 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/nav_home"
-        android:icon="@drawable/homepage"
-        android:title="Home"
-        app:showAsAction="ifRoom"/>
-
-    <item android:id="@+id/nav_search"
+    <item android:id="@+id/cocktailsSearch"
         android:icon="@drawable/searchcocktail"
         android:title="Search cocktails"
-        app:showAsAction="collapseActionView|ifRoom" />
+        app:showAsAction="collapseActionView|ifRoom"
+        android:actionLayout="@layout/fragment_cocktails_search"
+        app:actionViewClass="android.widget.SearchView" />
 
-    <item android:id="@+id/nav_fav"
-        android:icon="@drawable/favorite_cocktail_card"
+    <item android:id="@+id/mainPage"
+        android:icon="@drawable/homepage"
+        android:title="Home"
+        app:showAsAction="collapseActionView|ifRoom"/>
+
+    <item android:id="@+id/favoritesFragment"
+        android:icon="@drawable/favorite"
         android:title="Favorites"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="collapseActionView|ifRoom"/>
 
 </menu>

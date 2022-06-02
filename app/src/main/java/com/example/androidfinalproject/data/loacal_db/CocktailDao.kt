@@ -1,10 +1,7 @@
 package com.example.androidfinalproject.data.loacal_db
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.androidfinalproject.data.models.Cocktail
 
 @Dao
@@ -19,11 +16,15 @@ interface CocktailDao {
     @Query("SELECT * FROM cocktails WHERE strDrink LIKE :name")
     fun getCocktailsByName(name : String) : LiveData<List<Cocktail>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCocktail(cocktail: Cocktail)
+    @Query("SELECT * FROM cocktails WHERE isFavoriteCocktail = 1")
+    fun getFavoritesCocktails() : LiveData<List<Cocktail>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertCocktail(cocktail: Cocktail)
+
+    @Update
+    fun updateCocktail(cocktail: Cocktail)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertCocktails(cocktails : List<Cocktail>)
-
-    
 }

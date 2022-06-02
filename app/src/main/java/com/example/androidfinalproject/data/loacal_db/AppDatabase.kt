@@ -5,11 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.androidfinalproject.data.models.Cocktail
+import com.example.androidfinalproject.data.models.FavoriteCocktail
 
-@Database(entities = [Cocktail::class], version = 2, exportSchema = false)
+@Database(entities = [Cocktail::class, FavoriteCocktail::class], version = 4, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun cocktailDao() : CocktailDao
+
+    abstract fun favoriteCocktailDao() : FavoriteCocktailDao
 
     companion object {
 
@@ -23,5 +26,6 @@ abstract class AppDatabase : RoomDatabase() {
                         instance = it
                     }
             }
+
     }
 }

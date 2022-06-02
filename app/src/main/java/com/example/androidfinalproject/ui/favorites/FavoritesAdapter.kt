@@ -1,24 +1,23 @@
-package com.example.androidfinalproject.ui.cocktails_search
+package com.example.androidfinalproject.ui.favorites
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.OnReceiveContentListener
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.androidfinalproject.R
 import com.example.androidfinalproject.data.models.Cocktail
 import com.example.androidfinalproject.databinding.ItemCocktailBinding
+import com.example.androidfinalproject.ui.cocktails_search.CocktailsAdapter
 
-class CocktailsAdapter(private val listener: CocktailItemListener) :
-    RecyclerView.Adapter<CocktailsAdapter.CocktailViewHolder>() {
+class FavoritesAdapter(private val listener: CocktailItemListener) :
+    RecyclerView.Adapter<FavoritesAdapter.CocktailViewHolder>() {
 
-    private val cocktails = ArrayList<Cocktail>()
+    private val favoritesCocktails = ArrayList<Cocktail>()
 
     class CocktailViewHolder(private val itemBinding: ItemCocktailBinding,
-                              private val listener: CocktailItemListener)
+                             private val listener: CocktailItemListener
+    )
         : RecyclerView.ViewHolder(itemBinding.root),
         View.OnClickListener {
 
@@ -26,7 +25,6 @@ class CocktailsAdapter(private val listener: CocktailItemListener) :
 
         init {
             itemBinding.root.setOnClickListener(this)
-            itemBinding.favorite.setOnClickListener(this)
         }
 
         fun bind(item: Cocktail) {
@@ -36,20 +34,10 @@ class CocktailsAdapter(private val listener: CocktailItemListener) :
                 .load(item.strDrinkThumb)
                 .into(itemBinding.image)
 
-            if (item.isFavoriteCocktail == 1) {
-                itemBinding.favorite.isSelected = true
-            }
-
             itemBinding.favorite.setOnClickListener() {
                 Log.i("ffff","fffffff")
-                itemBinding.favorite.isSelected = item.isFavoriteCocktail == 1
-                onFavoriteClick(item)
             }
 
-        }
-
-        fun onFavoriteClick(cocktail: Cocktail) {
-            listener.onFavoriteClick(cocktail)
         }
 
         override fun onClick(v: View?) {
@@ -58,24 +46,24 @@ class CocktailsAdapter(private val listener: CocktailItemListener) :
     }
 
     fun setCocktails(cocktails : Collection<Cocktail>) {
-        this.cocktails.clear()
-        this.cocktails.addAll(cocktails)
+        this.favoritesCocktails.clear()
+        this.favoritesCocktails.addAll(cocktails)
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CocktailViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesAdapter.CocktailViewHolder {
         val binding = ItemCocktailBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return CocktailViewHolder(binding,listener)
+        return CocktailViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: CocktailViewHolder, position: Int) =
-        holder.bind(cocktails[position])
+        holder.bind(favoritesCocktails[position])
 
 
-    override fun getItemCount() = cocktails.size
+    override fun getItemCount() = favoritesCocktails.size
 
     interface CocktailItemListener {
         fun onCocktailClick(cocktailId : Int)
-        fun onFavoriteClick(cocktail: Cocktail)
     }
 }
+

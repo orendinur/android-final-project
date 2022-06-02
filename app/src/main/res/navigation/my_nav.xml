@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_mainPage_to_cocktailsSearch"
             app:destination="@id/cocktailsSearch" />
+        <action
+            android:id="@+id/action_mainPage_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
     </fragment>
     <fragment
         android:id="@+id/cocktailsSearch"
@@ -20,6 +23,15 @@
         tools:layout="@layout/fragment_cocktails_search" >
         <action
             android:id="@+id/action_cocktailsSearch_to_mainPage"
-            app:destination="@id/mainPage" />
+            app:destination="@id/mainPage"
+            app:popUpTo="@id/cocktailsSearch" />
+        <action
+            android:id="@+id/action_cocktailsSearch_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.androidfinalproject.ui.favorites.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>

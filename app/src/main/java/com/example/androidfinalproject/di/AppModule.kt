@@ -44,4 +44,7 @@ object AppModule {
     @Singleton
     fun provideCocktailDao(database: AppDatabase) = database.cocktailDao()
 
+    @Provides
+    @Singleton
+    fun provideFavoriteCocktailDao(database: AppDatabase) = database.favoriteCocktailDao()
 }

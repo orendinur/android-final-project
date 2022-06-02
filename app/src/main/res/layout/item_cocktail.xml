@@ -32,8 +32,10 @@
             android:background="#97391B1B"
             android:gravity="start"
             android:text="TextView"
+            android:paddingEnd="22dp"
+            android:fontFamily="@font/font7"
             android:textColor="#F2E3D8D8"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/image" />

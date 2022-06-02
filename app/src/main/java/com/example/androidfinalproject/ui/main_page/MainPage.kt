@@ -42,7 +42,7 @@ class MainPage : Fragment() {
         /*binding.button.setOnClickListener {
             findNavController().navigate(R.id.action_mainPage_to_cocktailsSearch)
         }*/
-        binding.root.setBackgroundColor((Color.parseColor("#000000")))
+        //binding.root.setBackgroundColor((Color.parseColor("#000000")))
 
         return binding.root
     }
@@ -70,6 +70,26 @@ class MainPage : Fragment() {
                     Log.i("cocktails changed","Error")
                     //binding.progressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), it.status.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        viewModel.margaritas.observe(viewLifecycleOwner) {
+            Log.i("cocktails changed","start")
+            when (it.status) {
+                is Success -> {
+                    Log.i("cocktails changed","Success")
+                    adapter.setCocktails(it.status.data!!)
+                }
+            }
+        }
+
+        viewModel.pina.observe(viewLifecycleOwner) {
+            Log.i("cocktails changed","start")
+            when (it.status) {
+                is Success -> {
+                    Log.i("cocktails changed","Success")
+                    adapter.setCocktails(it.status.data!!)
                 }
             }
         }

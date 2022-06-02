@@ -39,10 +39,18 @@ class CocktailsAdapter(private val listener: CocktailItemListener) :
             if (item.isFavoriteCocktail == 1) {
                 itemBinding.favorite.isSelected = true
             }
+            else {
+                itemBinding.favorite.isSelected = false
+            }
 
             itemBinding.favorite.setOnClickListener() {
                 Log.i("ffff","fffffff")
-                itemBinding.favorite.isSelected = item.isFavoriteCocktail == 1
+                if (item.isFavoriteCocktail == 0) {
+                    itemBinding.favorite.isSelected = true
+                }
+                else {
+                    itemBinding.favorite.isSelected = false
+                }
                 onFavoriteClick(item)
             }
 

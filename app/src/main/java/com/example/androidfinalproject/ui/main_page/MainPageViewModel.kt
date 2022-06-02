@@ -9,4 +9,6 @@ import javax.inject.Inject
 class MainPageViewModel @Inject constructor( cocktailRepository: CocktailRepository) : ViewModel(){
     val allCocktails = cocktailRepository.getCocktails()
     val margaritas = cocktailRepository.getCocktailsByName("%margarita%")
+    val pina = cocktailRepository.getCocktailsByName("%pina%")
+
 }

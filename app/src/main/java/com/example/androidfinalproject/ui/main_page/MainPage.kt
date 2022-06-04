@@ -1,21 +1,17 @@
 package com.example.androidfinalproject.ui.main_page
 
+import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.androidfinalproject.R
 import com.example.androidfinalproject.databinding.FragmentMainPageBinding
-import com.example.androidfinalproject.utils.Loading
 import com.example.androidfinalproject.utils.Success
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainPage : Fragment() {
@@ -54,14 +50,9 @@ class MainPage : Fragment() {
         viewModel.cocktails.observe(viewLifecycleOwner) {
 
             when (it.status) {
-
-
                 is Success -> {
                     adapter.setCocktails(it.status.data!!)
-
                 }
-
-
             }
 
         }

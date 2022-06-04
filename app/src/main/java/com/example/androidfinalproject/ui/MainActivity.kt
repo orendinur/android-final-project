@@ -1,5 +1,6 @@
 package com.example.androidfinalproject.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import com.example.androidfinalproject.R
 import kotlin.text.Typography.dagger
@@ -16,6 +17,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.core.graphics.alpha
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import com.example.androidfinalproject.MainPage
@@ -25,10 +27,11 @@ import com.example.androidfinalproject.ui.cocktails_search.CocktailsSearch
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar?.title = ""
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#000000")))
 

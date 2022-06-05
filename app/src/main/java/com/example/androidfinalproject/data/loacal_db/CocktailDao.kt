@@ -21,5 +21,9 @@ interface CocktailDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCocktails(cocktails : List<Cocktail>)
-    
+
+    @Query("SELECT * FROM cocktails ORDER BY random() LIMIT 5")
+    fun getRandomCocktails() : LiveData<List<Cocktail>>
+
+
 }

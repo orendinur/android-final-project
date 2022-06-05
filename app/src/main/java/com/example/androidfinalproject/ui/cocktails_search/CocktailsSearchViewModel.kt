@@ -9,4 +9,5 @@ import javax.inject.Inject
 class CocktailsSearchViewModel @Inject constructor(
     cocktailRepository: CocktailRepository) : ViewModel(){
         val cocktails = cocktailRepository.getCocktails()
+
     }

@@ -8,6 +8,5 @@ import javax.inject.Inject
 @HiltViewModel
 class MainPageViewModel @Inject constructor(cocktailRepository: CocktailRepository) : ViewModel(){
     val cocktails = cocktailRepository.getCocktails()
-
-
+    val randomCocktail=cocktailRepository.getRandomCocktails()
 }

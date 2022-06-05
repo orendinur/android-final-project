@@ -4,11 +4,15 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidfinalproject.R
+import com.example.androidfinalproject.data.models.Cocktail
 import com.example.androidfinalproject.databinding.FragmentMainPageBinding
+import com.example.androidfinalproject.ui.cocktails_search.CocktailsAdapter
 import com.example.androidfinalproject.utils.Success
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,15 +51,30 @@ class MainPage : Fragment() {
         adapter = MainPageAdapter(this)
         binding.cocktailsRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.cocktailsRv.adapter = adapter
-        viewModel.cocktails.observe(viewLifecycleOwner) {
+        viewModel.randomCocktail.observe(viewLifecycleOwner) {
 
             when (it.status) {
                 is Success -> {
                     adapter.setCocktails(it.status.data!!)
                 }
             }
-
         }
+
+
+        /*binding.cocktailsRand.layoutManager = GridLayoutManager(requireContext(),1)
+        binding.cocktailsRand.adapter = adapter
+
+        viewModel.randomCocktail.observe(viewLifecycleOwner){
+            when(it.status){
+                is Success->{
+                    adapter.setCocktails(it.status.data!!)
+                }
+            }
+        }*/
+
+
+
+
     }
 
         fun onCocktailClick(idDrink: Int) {

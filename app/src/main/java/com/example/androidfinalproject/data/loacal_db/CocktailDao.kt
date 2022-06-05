@@ -19,6 +19,9 @@ interface CocktailDao {
     @Query("SELECT * FROM cocktails WHERE isFavoriteCocktail = 1")
     fun getFavoritesCocktails() : LiveData<List<Cocktail>>
 
+    @Query("SELECT * FROM cocktails ORDER BY random() LIMIT 10")
+    fun getRandomCocktails() : LiveData<List<Cocktail>>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertCocktail(cocktail: Cocktail)
 

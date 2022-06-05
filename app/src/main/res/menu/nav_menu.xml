@@ -5,18 +5,18 @@
     <item android:id="@+id/cocktailsSearch"
         android:icon="@drawable/searchcocktail"
         android:title="Search cocktails"
-        app:showAsAction="collapseActionView|ifRoom"
+        app:showAsAction="ifRoom|collapseActionView"
         android:actionLayout="@layout/fragment_cocktails_search"
         app:actionViewClass="android.widget.SearchView" />
 
     <item android:id="@+id/mainPage"
         android:icon="@drawable/homepage"
         android:title="Home"
-        app:showAsAction="collapseActionView|ifRoom"/>
+        app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/favoritesFragment"
         android:icon="@drawable/favorite"
         android:title="Favorites"
-        app:showAsAction="collapseActionView|ifRoom"/>
+        app:showAsAction="ifRoom"/>
 
 </menu>

@@ -61,7 +61,7 @@ class CocktailsAdapter(private val listener: CocktailItemListener) :
         }
 
         override fun onClick(v: View?) {
-            listener.onCocktailClick(cocktail.idDrink)
+            listener.onCocktailClick(cocktail)
         }
     }
 
@@ -83,7 +83,7 @@ class CocktailsAdapter(private val listener: CocktailItemListener) :
     override fun getItemCount() = cocktails.size
 
     interface CocktailItemListener {
-        fun onCocktailClick(cocktailId : Int)
+        fun onCocktailClick(cocktailId : Cocktail)
         fun onFavoriteClick(cocktail: Cocktail)
     }
 }

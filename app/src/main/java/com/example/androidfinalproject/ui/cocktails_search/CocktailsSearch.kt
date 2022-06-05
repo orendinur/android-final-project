@@ -7,6 +7,7 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -15,6 +16,8 @@ import com.example.androidfinalproject.data.loacal_db.CocktailDao
 import com.example.androidfinalproject.data.models.Cocktail
 import com.example.androidfinalproject.data.repository.CocktailRepository
 import com.example.androidfinalproject.databinding.FragmentCocktailsSearchBinding
+import com.example.androidfinalproject.ui.description_page.DescriptionCocktailViewModel
+import com.example.androidfinalproject.ui.favorites.FavoritesViewModel
 import com.example.androidfinalproject.utils.Loading
 import com.example.androidfinalproject.utils.Success
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +28,8 @@ class CocktailsSearch : Fragment(), CocktailsAdapter.CocktailItemListener {
 
     private val viewModel : CocktailsSearchViewModel by viewModels()
 
+    private val descriptionCocktailViewModel: DescriptionCocktailViewModel by activityViewModels()
+
     private var _binding: FragmentCocktailsSearchBinding? = null
 
     private val binding get() = _binding!!
@@ -32,6 +37,10 @@ class CocktailsSearch : Fragment(), CocktailsAdapter.CocktailItemListener {
     private  lateinit var  adapter: CocktailsAdapter
 
     private lateinit var searchView : SearchView
+
+    private lateinit var myMenu: Menu
+
+    private lateinit var menuInflater : MenuInflater
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,21 +67,25 @@ class CocktailsSearch : Fragment(), CocktailsAdapter.CocktailItemListener {
                 is Loading -> {
                     Log.i("cocktails changed","Loading")
                     binding.progressBar.visibility = View.VISIBLE
+                    binding.noResults.visibility = View.GONE
                 }
                 is Success -> {
                     Log.i("cocktails changed","Success")
                     binding.progressBar.visibility = View.GONE
+                    binding.noResults.visibility = View.GONE
                     adapter.setCocktails(it.status.data!!)
                 }
 
                 is Error -> {
                     Log.i("cocktails changed","Error")
                     binding.progressBar.visibility = View.GONE
+                    binding.noResults.visibility = View.GONE
                     Toast.makeText(requireContext(), it.status.message, Toast.LENGTH_LONG).show()
                 }
             }
             if (adapter.itemCount == 0 && it.status !is Loading) {
-                Toast.makeText(requireContext(), "No results", Toast.LENGTH_SHORT).show()
+                binding.noResults.visibility = View.VISIBLE
+                //Toast.makeText(requireContext(), "No results", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -89,14 +102,20 @@ class CocktailsSearch : Fragment(), CocktailsAdapter.CocktailItemListener {
         viewModel.updateCocktail(cocktail)
     }
 
-    override fun onCocktailClick(cocktailId: Int) {
-        //findNavController().navigate(R.id.action_cocktailsSearch_to_mainPage)
+    override fun onCocktailClick(cocktail: Cocktail) {
+        //MenuItemCompat.collapseActionView(myMenu.findItem(R.id.cocktailsSearch))
+        myMenu.clear()
+        menuInflater.inflate(R.menu.nav_menu, myMenu)
+        findNavController().navigate(R.id.action_cocktailsSearch_to_descriptionFragment)
+        descriptionCocktailViewModel.selectCocktail(cocktail)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater?.let { super.onCreateOptionsMenu(menu, it) }
         menu.clear()
         inflater?.inflate(R.menu.nav_menu, menu)
+        menuInflater = inflater
+        myMenu = menu
         val menuItem = menu.findItem(R.id.cocktailsSearch)
         searchView = menuItem.actionView as SearchView
         searchView.queryHint = "Search for a cocktail"
@@ -118,7 +137,10 @@ class CocktailsSearch : Fragment(), CocktailsAdapter.CocktailItemListener {
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                findNavController().navigate(R.id.action_cocktailsSearch_to_mainPage)
+                //myMenu.clear()
+                //menuInflater.inflate(R.menu.nav_menu, menu)
+                activity?.onBackPressed()
+                //findNavController().navigate(R.id.action_cocktailsSearch_to_mainPage)
                 return true
             }
         })

@@ -10,4 +10,7 @@
     <color name="golden_yellow">#FFC000</color>
     <color name="grey">#939393</color>
     <color name="red">#D50404</color>
+    <color name="description_background">#3f3f3f</color>
+    <color name="description_green">#32DE84</color>
+    <color name="description_instructions">#79b321</color>
 </resources>

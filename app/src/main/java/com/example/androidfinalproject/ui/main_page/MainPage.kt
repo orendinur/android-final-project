@@ -79,7 +79,6 @@ class MainPage : Fragment() {
             when (it.status) {
                 is Success -> {
                     Log.i("cocktails changed","Success")
-                    adapter.setCocktails(it.status.data!!)
                 }
             }
         }
@@ -89,7 +88,6 @@ class MainPage : Fragment() {
             when (it.status) {
                 is Success -> {
                     Log.i("cocktails changed","Success")
-                    adapter.setCocktails(it.status.data!!)
                 }
             }
         }

@@ -25,6 +25,7 @@ class FavoritesAdapter(private val listener: CocktailItemListener) :
 
         init {
             itemBinding.root.setOnClickListener(this)
+            itemBinding.favorite.setOnClickListener(this)
         }
 
         fun bind(item: Cocktail) {
@@ -33,15 +34,22 @@ class FavoritesAdapter(private val listener: CocktailItemListener) :
             Glide.with(itemBinding.root)
                 .load(item.strDrinkThumb)
                 .into(itemBinding.image)
+            itemBinding.favorite.isSelected = true
+
 
             itemBinding.favorite.setOnClickListener() {
                 Log.i("ffff","fffffff")
+                onFavoriteClick(item)
             }
 
         }
 
         override fun onClick(v: View?) {
-            listener.onCocktailClick(cocktail.idDrink)
+            listener.onCocktailClick(cocktail)
+        }
+
+        fun onFavoriteClick(cocktail: Cocktail) {
+            listener.onFavoriteClick(cocktail)
         }
     }
 
@@ -49,6 +57,10 @@ class FavoritesAdapter(private val listener: CocktailItemListener) :
         this.favoritesCocktails.clear()
         this.favoritesCocktails.addAll(cocktails)
         notifyDataSetChanged()
+    }
+
+    fun removeCocktail(cocktail: Cocktail) {
+        this.favoritesCocktails.remove(cocktail)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesAdapter.CocktailViewHolder {
@@ -63,7 +75,8 @@ class FavoritesAdapter(private val listener: CocktailItemListener) :
     override fun getItemCount() = favoritesCocktails.size
 
     interface CocktailItemListener {
-        fun onCocktailClick(cocktailId : Int)
+        fun onCocktailClick(cocktail : Cocktail)
+        fun onFavoriteClick(cocktail: Cocktail)
     }
 }
 

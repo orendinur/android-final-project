@@ -35,7 +35,7 @@ class CocktailRepository @Inject constructor (
                 { localDataSource.insertCocktails(it.drinks) }
             )
 
-    suspend fun updateCocktail(cocktail: Cocktail) {
+    fun updateCocktail(cocktail: Cocktail) {
         localDataSource.updateCocktail(cocktail)
     }
 
@@ -45,5 +45,9 @@ class CocktailRepository @Inject constructor (
 
     fun getFavoriteCocktails() = performFetching {
         localDataSource.getFavoritesCocktails()
+    }
+
+    fun getRandomCocktails() = performFetching {
+        localDataSource.getRandomCocktails()
     }
 }

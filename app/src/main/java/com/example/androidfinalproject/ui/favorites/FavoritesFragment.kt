@@ -4,16 +4,22 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.MenuItemCompat
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidfinalproject.R
+import com.example.androidfinalproject.data.models.Cocktail
 import com.example.androidfinalproject.databinding.FragmentCocktailsSearchBinding
 import com.example.androidfinalproject.databinding.FragmentFavoritesBinding
 import com.example.androidfinalproject.ui.cocktails_search.CocktailsAdapter
 import com.example.androidfinalproject.ui.cocktails_search.CocktailsSearchViewModel
+import com.example.androidfinalproject.ui.description_page.DescriptionCocktailViewModel
 import com.example.androidfinalproject.utils.Loading
 import com.example.androidfinalproject.utils.Success
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +28,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class FavoritesFragment : Fragment(), FavoritesAdapter.CocktailItemListener  {
 
     private val viewModel : FavoritesViewModel by viewModels()
+
+    private val descriptionCocktailViewModel: DescriptionCocktailViewModel by activityViewModels()
 
     private var _binding: FragmentFavoritesBinding? = null
 
@@ -71,7 +79,23 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.CocktailItemListener  {
         }
     }
 
-    override fun onCocktailClick(cocktailId: Int) {
+    override fun onCocktailClick(cocktail: Cocktail) {
         Log.i("clicked","boom")
+        findNavController().navigate(R.id.action_favoritesFragment_to_descriptionFragment)
+        descriptionCocktailViewModel.selectCocktail(cocktail)
+    }
+
+    override fun onFavoriteClick(cocktail: Cocktail) {
+        if (cocktail.isFavoriteCocktail == 1) {
+            cocktail.isFavoriteCocktail = 0
+            Toast.makeText(requireContext(), "changed to ${cocktail.isFavoriteCocktail}", Toast.LENGTH_SHORT).show()
+        }
+        adapter.removeCocktail(cocktail)
+        viewModel.updateCocktail(cocktail)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

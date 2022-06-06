@@ -10,4 +10,5 @@ class MainPageViewModel @Inject constructor( cocktailRepository: CocktailReposit
     val allCocktails = cocktailRepository.getCocktails()
     val margaritas = cocktailRepository.getCocktailsByName("%margarita%")
     val pina = cocktailRepository.getCocktailsByName("%pina%")
+    val randomCocktail = cocktailRepository.getRandomCocktails()
 }

@@ -53,7 +53,22 @@ class MainPage : Fragment() {
         adapter = MainPageAdapter(this)
         binding.cocktailsRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.cocktailsRv.adapter = adapter
+
         viewModel.allCocktails.observe(viewLifecycleOwner) {
+            Log.i("cocktails changed","start")
+            when (it.status) {
+                is Success -> {
+                    Log.i("cocktails changed","Success")
+                }
+                is Error -> {
+                    Log.i("cocktails changed","Error")
+                    //binding.progressBar.visibility = View.GONE
+                    Toast.makeText(requireContext(), it.status.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        viewModel.randomCocktail.observe(viewLifecycleOwner) {
             Log.i("cocktails changed","start")
             when (it.status) {
                 is Loading -> {
@@ -73,6 +88,7 @@ class MainPage : Fragment() {
                 }
             }
         }
+
 
         viewModel.margaritas.observe(viewLifecycleOwner) {
             Log.i("cocktails changed","start")

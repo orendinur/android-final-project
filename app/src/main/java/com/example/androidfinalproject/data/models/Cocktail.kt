@@ -11,7 +11,8 @@ data class Cocktail(
     val strDrinkAlternate	:	String?,
     val strTags	:	String?,
     val strVideo	:	String?,
-    val strCategory	:	String?,
+    val strCategory
+    :	String?,
     val strIBA	:	String?,
     val strAlcoholic	:	String?,
     val strGlass	:	String?,

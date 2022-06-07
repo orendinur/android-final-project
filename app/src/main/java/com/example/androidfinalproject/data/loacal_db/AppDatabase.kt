@@ -17,7 +17,8 @@ abstract class AppDatabase : RoomDatabase() {
         private var instance : AppDatabase?  = null
 
         fun getDatabase(context: Context) : AppDatabase =
-            instance ?: synchronized(this) {
+            instance ?: synchronized(this)
+            {
                 Room.databaseBuilder(context.applicationContext,AppDatabase::class.java,"cocktails")
                     .fallbackToDestructiveMigration().build().also {
                         instance = it

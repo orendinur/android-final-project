@@ -5,12 +5,15 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.core.view.MenuItemCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.androidfinalproject.R
 import com.example.androidfinalproject.data.models.Cocktail
 import com.example.androidfinalproject.databinding.FragmentDescriptionBinding
+import com.example.androidfinalproject.utils.Loading
+import com.example.androidfinalproject.utils.Success
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,63 +24,6 @@ class DescriptionFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: DescriptionCocktailViewModel by activityViewModels()
-
-    private var cocktailDescription: Cocktail? = null
-        set(value) {
-            binding.cokctailName.text = value?.strDrink
-            binding.isAlcoholic.text = value?.strAlcoholic
-            Glide.with(this).load(value?.strDrinkThumb).into(binding.coktailImage)
-            if (value?.strInstructions != null) binding.instructions.text =
-                value?.strInstructions else binding.bottomInstructionsLayout.visibility =
-                View.INVISIBLE
-
-
-            var ingridientsStr = value?.strIngredient1 + "\n" +
-                    value?.strIngredient2 + "\n" +
-                    value?.strIngredient3 + "\n" +
-                    value?.strIngredient4 + "\n" +
-                    value?.strIngredient5 + "\n" +
-                    value?.strIngredient6 + "\n" +
-                    value?.strIngredient7 + "\n" +
-                    value?.strIngredient8 + "\n" +
-                    value?.strIngredient9 + "\n" +
-                    value?.strIngredient10 + "\n" +
-                    value?.strIngredient11 + "\n" +
-                    value?.strIngredient12 + "\n" +
-                    value?.strIngredient13 + "\n" +
-                    value?.strIngredient14 + "\n" +
-                    value?.strIngredient15 + "\n"
-
-            var drinkMeasureStr = viewModel.selectedCocktail.value?.strMeasure1 + "\n" +
-                    value?.strMeasure2 + "\n" +
-                    value?.strMeasure3 + "\n" +
-                    value?.strMeasure4 + "\n" +
-                    value?.strMeasure5 + "\n" +
-                    value?.strMeasure6 + "\n" +
-                    value?.strMeasure7 + "\n" +
-                    value?.strMeasure8 + "\n" +
-                    value?.strMeasure9 + "\n" +
-                    value?.strMeasure10 + "\n" +
-                    value?.strMeasure11 + "\n" +
-                    value?.strMeasure12 + "\n" +
-                    value?.strMeasure13 + "\n" +
-                    value?.strMeasure14 + "\n" +
-                    value?.strMeasure15 + "\n"
-
-
-            ingridientsStr = ingridientsStr.replace("null", "")
-            drinkMeasureStr = drinkMeasureStr.replace("null", "")
-            if(ingridientsStr.replace("\n", "").isNullOrBlank()) {
-                Toast.makeText(requireContext(),"Ingridients aren't available by the API", Toast.LENGTH_LONG).show()
-                binding.ingridients.text = ""
-                binding.measures.text = ""
-            } else {
-                binding.ingridients.text = ingridientsStr
-                binding.measures.text = drinkMeasureStr
-            }
-
-            field = value
-        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,58 +46,66 @@ class DescriptionFragment : Fragment() {
         viewModel.selectedCocktail.observe(viewLifecycleOwner) {
             cocktailDescription = it
         }*/
-        val value = viewModel.selectedCocktail.value
-        binding.cokctailName.text = value?.strDrink
-        binding.isAlcoholic.text = value?.strAlcoholic
-        Glide.with(this).load(value?.strDrinkThumb).into(binding.coktailImage)
-        if (value?.strInstructions != null) binding.instructions.text =
-            value?.strInstructions else binding.bottomInstructionsLayout.visibility =
+        viewModel.selectedCocktail.observe(viewLifecycleOwner) {
+            updateCocktailViews(it)
+        }
+        //val value = viewModel.selectedCocktail.value?.status?.data!![0]
+    }
+
+    private fun updateCocktailViews(cocktail:Cocktail) {
+        binding.cocktailName.text = cocktail.strDrink
+        binding.isAlcoholic.text = cocktail.strAlcoholic
+        Glide.with(this).load(cocktail.strDrinkThumb).into(binding.cocktailImage)
+        if (cocktail.strInstructions != null) binding.instructions.text =
+            cocktail.strInstructions else binding.bottomInstructionsLayout.visibility =
             View.INVISIBLE
 
 
-        var ingridientsStr = value?.strIngredient1 + "\n" +
-                value?.strIngredient2 + "\n" +
-                value?.strIngredient3 + "\n" +
-                value?.strIngredient4 + "\n" +
-                value?.strIngredient5 + "\n" +
-                value?.strIngredient6 + "\n" +
-                value?.strIngredient7 + "\n" +
-                value?.strIngredient8 + "\n" +
-                value?.strIngredient9 + "\n" +
-                value?.strIngredient10 + "\n" +
-                value?.strIngredient11 + "\n" +
-                value?.strIngredient12 + "\n" +
-                value?.strIngredient13 + "\n" +
-                value?.strIngredient14 + "\n" +
-                value?.strIngredient15 + "\n"
+        var ingredientsStr = cocktail.strIngredient1 + "\n" +
+                cocktail.strIngredient2 + "\n" +
+                cocktail.strIngredient3 + "\n" +
+                cocktail.strIngredient4 + "\n" +
+                cocktail.strIngredient5 + "\n" +
+                cocktail.strIngredient6 + "\n" +
+                cocktail.strIngredient7 + "\n" +
+                cocktail.strIngredient8 + "\n" +
+                cocktail.strIngredient9 + "\n" +
+                cocktail.strIngredient10 + "\n" +
+                cocktail.strIngredient11 + "\n" +
+                cocktail.strIngredient12 + "\n" +
+                cocktail.strIngredient13 + "\n" +
+                cocktail.strIngredient14 + "\n" +
+                cocktail.strIngredient15 + "\n"
 
-        var drinkMeasureStr = viewModel.selectedCocktail.value?.strMeasure1 + "\n" +
-                value?.strMeasure2 + "\n" +
-                value?.strMeasure3 + "\n" +
-                value?.strMeasure4 + "\n" +
-                value?.strMeasure5 + "\n" +
-                value?.strMeasure6 + "\n" +
-                value?.strMeasure7 + "\n" +
-                value?.strMeasure8 + "\n" +
-                value?.strMeasure9 + "\n" +
-                value?.strMeasure10 + "\n" +
-                value?.strMeasure11 + "\n" +
-                value?.strMeasure12 + "\n" +
-                value?.strMeasure13 + "\n" +
-                value?.strMeasure14 + "\n" +
-                value?.strMeasure15 + "\n"
+        var drinkMeasureStr = cocktail.strMeasure1 + "\n" +
+                cocktail.strMeasure2 + "\n" +
+                cocktail.strMeasure3 + "\n" +
+                cocktail.strMeasure4 + "\n" +
+                cocktail.strMeasure5 + "\n" +
+                cocktail.strMeasure6 + "\n" +
+                cocktail.strMeasure7 + "\n" +
+                cocktail.strMeasure8 + "\n" +
+                cocktail.strMeasure9 + "\n" +
+                cocktail.strMeasure10 + "\n" +
+                cocktail.strMeasure11 + "\n" +
+                cocktail.strMeasure12 + "\n" +
+                cocktail.strMeasure13 + "\n" +
+                cocktail.strMeasure14 + "\n" +
+                cocktail.strMeasure15 + "\n"
 
 
-        ingridientsStr = ingridientsStr.replace("null", "")
+        ingredientsStr = ingredientsStr.replace("null", "")
         drinkMeasureStr = drinkMeasureStr.replace("null", "")
-        if(ingridientsStr.replace("\n", "").isNullOrBlank()) {
-            Toast.makeText(requireContext(),"Ingridients aren't available by the API", Toast.LENGTH_LONG).show()
-            binding.ingridients.text = ""
+        if(ingredientsStr.replace("\n", "").isNullOrBlank()) {
+            binding.ingredients.text = ""
             binding.measures.text = ""
+            binding.noIngredients.visibility = View.VISIBLE
         } else {
-            binding.ingridients.text = ingridientsStr
+            binding.ingredients.text = ingredientsStr
             binding.measures.text = drinkMeasureStr
         }
+        binding.progressBar.visibility = View.GONE
+        binding.cocktailLayout.visibility = View.VISIBLE
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

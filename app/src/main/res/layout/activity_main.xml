@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity"
     android:orientation="vertical"
-    android:background="@drawable/dark_background_sparkels">
+    android:background="@drawable/dark_background_1">
 
 
     <androidx.fragment.app.FragmentContainerView

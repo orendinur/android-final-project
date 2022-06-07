@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="#97391B1B"
+            android:background="@color/dark_transparent"
             android:gravity="start"
             android:text="TextView"
             android:paddingEnd="22dp"

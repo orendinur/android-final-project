@@ -15,16 +15,15 @@
         <action
             android:id="@+id/action_mainPage_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_mainPage_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/cocktailsSearch"
         android:name="com.example.androidfinalproject.ui.cocktails_search.CocktailsSearch"
         android:label="fragment_cocktails_search"
         tools:layout="@layout/fragment_cocktails_search" >
-        <action
-            android:id="@+id/action_cocktailsSearch_to_mainPage"
-            app:destination="@id/mainPage"
-            app:popUpTo="@id/cocktailsSearch" />
         <action
             android:id="@+id/action_cocktailsSearch_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />

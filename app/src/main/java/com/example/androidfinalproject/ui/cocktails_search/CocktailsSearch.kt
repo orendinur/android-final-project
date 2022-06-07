@@ -93,11 +93,9 @@ class CocktailsSearch : Fragment(), CocktailsAdapter.CocktailItemListener {
     override fun onFavoriteClick(cocktail: Cocktail) {
         if (cocktail.isFavoriteCocktail == 0) {
             cocktail.isFavoriteCocktail = 1
-            Toast.makeText(requireContext(), "changed to ${cocktail.isFavoriteCocktail}", Toast.LENGTH_SHORT).show()
         }
         else {
             cocktail.isFavoriteCocktail = 0
-            Toast.makeText(requireContext(), "changed to ${cocktail.isFavoriteCocktail}", Toast.LENGTH_SHORT).show()
         }
         viewModel.updateCocktail(cocktail)
     }

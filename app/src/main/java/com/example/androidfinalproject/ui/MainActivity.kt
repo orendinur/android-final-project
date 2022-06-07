@@ -52,25 +52,6 @@ class MainActivity : AppCompatActivity() {
         if (currentFragment == R.id.cocktailsSearch && item.itemId != R.id.cocktailsSearch) {
             MenuItemCompat.collapseActionView(myMenu.findItem(R.id.cocktailsSearch))
         }
-        /*
-        val currentFragment = navController.currentDestination?.getId()
-        when(item.itemId){
-
-            R.id.nav_search -> {
-                navController.navigate(R.id.action_mainPage_to_cocktailsSearch)
-            }
-
-            R.id.nav_fav -> {
-
-            }
-
-            R.id.nav_home -> {
-                if (currentFragment != R.id.mainPage) {
-                    navController.navigate(R.id.action_cocktailsSearch_to_mainPage)
-                }
-            }
-
-        } */
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
 }

@@ -4,7 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
+import com.example.androidfinalproject.data.models.AllCocktails
+import com.example.androidfinalproject.data.models.Cocktail
 import kotlinx.coroutines.Dispatchers
+import retrofit2.Response
 
 fun <T,A> performFetchingAndSaving(localDbFetch: () -> LiveData<T>,
                                    remoteDbFetch: suspend () ->Resource<A>,
@@ -37,5 +40,3 @@ fun <T> performFetching(localDbFetch: () -> LiveData<T> ) =
         val source = localDbFetch().map { Resource.success(it) }
         emitSource(source)
     }
-
-

@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.androidfinalproject.data.models.Cocktail
-import com.example.androidfinalproject.databinding.ItemCocktailBinding
 import com.example.androidfinalproject.databinding.ItemCocktailMainpageBinding
 
 class MainPageAdapter(private val listener: MainPage) :
@@ -36,7 +35,7 @@ class MainPageAdapter(private val listener: MainPage) :
         }
 
         override fun onClick(v: View?) {
-            listener.onCocktailClick(cocktail.idDrink)
+            listener.onCocktailClick(cocktail)
         }
     }
 
@@ -58,7 +57,7 @@ class MainPageAdapter(private val listener: MainPage) :
     override fun getItemCount() = allCocktails.size
 
     interface CocktailItemListener {
-        fun onCocktailClick(cocktailId : Int)
+        fun onCocktailClick(cocktail : Cocktail)
     }
 
     override fun onBindViewHolder(holder: CocktailViewHolder, position: Int) {

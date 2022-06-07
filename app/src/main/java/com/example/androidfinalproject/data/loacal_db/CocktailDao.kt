@@ -2,6 +2,7 @@ package com.example.androidfinalproject.data.loacal_db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.androidfinalproject.data.models.AllCocktails
 import com.example.androidfinalproject.data.models.Cocktail
 
 @Dao
@@ -11,7 +12,7 @@ interface CocktailDao {
     fun  getAllCocktails() : LiveData<List<Cocktail>>
     
     @Query("SELECT * FROM cocktails WHERE idDrink = :id")
-    fun getCocktail(id : Int) : LiveData<Cocktail>
+    fun getCocktail(id : Int) : LiveData<List<Cocktail>>
 
     @Query("SELECT * FROM cocktails WHERE strDrink LIKE :name")
     fun getCocktailsByName(name : String) : LiveData<List<Cocktail>>
@@ -27,6 +28,9 @@ interface CocktailDao {
 
     @Update
     fun updateCocktail(cocktail: Cocktail)
+
+    @Update
+    fun updateCocktails(cocktails : List<Cocktail>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertCocktails(cocktails : List<Cocktail>)

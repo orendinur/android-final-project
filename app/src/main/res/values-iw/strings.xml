@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android Final Project</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">שלום לפרגמנט הריק</string>
+    <string name="no_results">אין תוצאות</string>
+    <string name="opening_sentence">רוצה להכין קוקטייל?\n
+        כאן תוכל למצוא מגוון מתכונים לקוקטיילים המומלצים ביותר!
+        תהנה</string>
+    <string name="cocktail_bar_title">קוקטייל</string>
+    <string name="opening_second_sentence">אתה לא יכול לקנות אושר, אבל אתה יכול להכין קוקטייל. וזה בערך אותו הדבר</string>
+    <string name="cocktails_of_the_day">הקוקטיילים המומלצים:</string>
+    <string name="ingredients_arent_available">הרכיבים אינם זמינים</string>
+    <string name="icon_of_a_cocktail">אייקון של קוקטייל</string>
+</resources>
